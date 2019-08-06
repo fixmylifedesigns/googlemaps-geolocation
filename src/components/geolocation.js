@@ -8,14 +8,22 @@ class Demo extends React.Component {
     return !this.props.isGeolocationAvailable ? (
       <div>Your browser does not support Geolocation</div>
     ) : !this.props.isGeolocationEnabled ? (
-      <div>Geolocation is not enabled</div>
+      <div
+        style={{ background: "white", borderRadius: "20px", padding: "30px" }}
+      >
+        Geolocation is not enabled
+      </div>
     ) : this.props.coords ? (
-        <Maps
-          lat={this.props.coords.latitude}
-          lng={this.props.coords.longitude}
-        />
+      <Maps
+        lat={this.props.coords.latitude}
+        lng={this.props.coords.longitude}
+      />
     ) : (
-      <div>Getting the location data&hellip; </div>
+      <div
+        style={{ background: "white", borderRadius: "20px", padding: "30px" }}
+      >
+        Getting the location data&hellip;{" "}
+      </div>
     );
   }
 }
