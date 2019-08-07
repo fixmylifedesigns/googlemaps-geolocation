@@ -1,11 +1,14 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import Geolocated from './components/geolocation'
+import Geolocated from "./components/geolocation";
+import MenuButton from "./components/material-ui/menu";
+// import lightmode from './components/mapstyles/lightMode'
+// import darkmode from './components/mapstyles/darkMode'
+
 function App() {
   return (
     <div className="App">
-      <Geolocated/>
+      <Geolocated /> <MenuButton />
     </div>
   );
 }

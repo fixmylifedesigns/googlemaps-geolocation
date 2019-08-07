@@ -3,20 +3,33 @@ import {
   GoogleMap,
   withScriptjs,
   withGoogleMap,
-  Marker,
-  InfoWindow
+  Marker
 } from "react-google-maps";
-import mapStyles from "./mapStyles";
-import reactlogo from '../logo.svg'
-import ReactLogo from './reactlogo.png'
+import ReactLogo from "./reactlogo.png";
+import lightmode from "./mapstyles/lightMode";
+import darkmode from "./mapstyles/darkMode";
+import MenuButton from './material-ui/menu'
+import { light } from "@material-ui/core/styles/createPalette";
 
 function Map(props) {
+
+const mapMode = () => {
+  if (localStorage.getItem("mapmode") === "darkmode"){
+    return darkmode
+  } if (localStorage.getItem("mapmode") === "lightmode") {
+    return lightmode
+  } else {
+    return lightmode
+  }
+}
+
   return (
     <div>
+      
       <GoogleMap
         defaultZoom={15}
         defaultCenter={{ lat: props.lat, lng: props.lng }}
-        defaultOptions={{ styles: mapStyles }}
+        defaultOptions={{ styles: mapMode() }}
       />
       <Marker
         key="location"
@@ -25,8 +38,8 @@ function Map(props) {
           lng: props.lng
         }}
         icon={{
-          url:ReactLogo,
-          scaledSize: new window.google.maps.Size(45, 60),
+          url: ReactLogo,
+          scaledSize: new window.google.maps.Size(45, 60)
         }}
       />
     </div>
@@ -36,8 +49,17 @@ function Map(props) {
 const MapWrapped = withScriptjs(withGoogleMap(Map));
 
 export default function TestMap(props) {
+
   return (
-    <div style={{ overflow: "hidden", width: "95vw", height: "95vh", margin:'auto', borderRadius:"30px"  }}>
+    <div
+      style={{
+        overflow: "hidden",
+        width: "95vw",
+        height: "95vh",
+        margin: "auto",
+        borderRadius: "30px"
+      }}
+    >
       <MapWrapped
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
           process.env.REACT_APP_GOOGLE_KEY
