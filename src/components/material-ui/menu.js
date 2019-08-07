@@ -23,7 +23,7 @@ export default function MenuButton(props) {
     window.location.reload();
   }
   return (
-    <div style={{position:"absolute", top:"110px", left:"25px"}}>
+    <div style={{position:"absolute", top:"110px", left:"3.5%"}}>
       <Button
         aria-controls="simple-menu"
         aria-haspopup="true"
