@@ -14,16 +14,13 @@ export default function MenuButton(props) {
     setAnchorEl(null);
   }
   const darkmode = () => {
-    if (localStorage.getItem("mapmode") === "lightmode") {
       localStorage.setItem("mapmode", "darkmode");
       window.location.reload();
-    }
   };
   const lightmode = () => {
-    if (localStorage.getItem("mapmode") === "darkmode") {
       localStorage.setItem("mapmode", "lightmode");
       window.location.reload();
-    }
+    
   };
 
   const buttonDisplay = () => {
@@ -35,7 +32,6 @@ export default function MenuButton(props) {
     } else {
       return (
         <>
-          {" "}
           <MenuItem onClick={lightmode}>Light Mode</MenuItem>
           <MenuItem onClick={darkmode}>Dark Mode</MenuItem>{" "}
         </>
