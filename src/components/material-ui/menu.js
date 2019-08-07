@@ -13,17 +13,37 @@ export default function MenuButton(props) {
   function handleClose() {
     setAnchorEl(null);
   }
- const darkmode = () => {
-    localStorage.setItem("mapmode", "darkmode")
-    window.location.reload();
-
-  }
+  const darkmode = () => {
+    if (localStorage.getItem("mapmode") === "lightmode") {
+      localStorage.setItem("mapmode", "darkmode");
+      window.location.reload();
+    }
+  };
   const lightmode = () => {
-    localStorage.setItem("mapmode", "lightmode")
-    window.location.reload();
-  }
+    if (localStorage.getItem("mapmode") === "darkmode") {
+      localStorage.setItem("mapmode", "lightmode");
+      window.location.reload();
+    }
+  };
+
+  const buttonDisplay = () => {
+    if (localStorage.getItem("mapmode") === "darkmode") {
+      return <MenuItem onClick={lightmode}>Light Mode</MenuItem>;
+    }
+    if (localStorage.getItem("mapmode") === "lightmode") {
+      return <MenuItem onClick={darkmode}>Dark Mode</MenuItem>;
+    } else {
+      return (
+        <>
+          {" "}
+          <MenuItem onClick={lightmode}>Light Mode</MenuItem>
+          <MenuItem onClick={darkmode}>Dark Mode</MenuItem>{" "}
+        </>
+      );
+    }
+  };
   return (
-    <div style={{position:"absolute", top:"110px", left:"3.5%"}}>
+    <div style={{ position: "absolute", top: "110px", left: "3.5%" }}>
       <Button
         aria-controls="simple-menu"
         aria-haspopup="true"
@@ -39,10 +59,27 @@ export default function MenuButton(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={lightmode}>Light Mode</MenuItem>
-        <MenuItem onClick={darkmode}>Dark Mode</MenuItem>
-        <MenuItem > <a href="https://github.com/fixmylifedesigns/googlemaps-geolocation" style={{textDecoration:"none", color:"black"}}>GitHub Repo</a></MenuItem>
-        <MenuItem ><a href="https://www.duranirving.com" style={{textDecoration:"none", color:"black"}}>Contact</a></MenuItem>
+        {/* <MenuItem onClick={props.handleMapMode}>Switch Mode</MenuItem> */}
+        {/* <MenuItem onClick={lightmode}>Light Mode</MenuItem>
+        <MenuItem onClick={darkmode}>Dark Mode</MenuItem> */}
+        {buttonDisplay()}
+        <MenuItem>
+          {" "}
+          <a
+            href="https://github.com/fixmylifedesigns/googlemaps-geolocation"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            GitHub Repo
+          </a>
+        </MenuItem>
+        <MenuItem>
+          <a
+            href="https://www.duranirving.com"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            Contact
+          </a>
+        </MenuItem>
       </Menu>
     </div>
   );

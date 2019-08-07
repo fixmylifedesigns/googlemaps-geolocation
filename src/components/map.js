@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   GoogleMap,
   withScriptjs,
@@ -8,11 +8,10 @@ import {
 import ReactLogo from "./reactlogo.png";
 import lightmode from "./mapstyles/lightMode";
 import darkmode from "./mapstyles/darkMode";
-import MenuButton from './material-ui/menu'
-import { light } from "@material-ui/core/styles/createPalette";
+// import MenuButton from './material-ui/menu'
 
 function Map(props) {
-
+// const [map, setMap] = React.useState(props.mapMode)
 const mapMode = () => {
   if (localStorage.getItem("mapmode") === "darkmode"){
     return darkmode
@@ -23,9 +22,10 @@ const mapMode = () => {
   }
 }
 
+
   return (
     <div>
-      
+
       <GoogleMap
         defaultZoom={15}
         defaultCenter={{ lat: props.lat, lng: props.lng }}
@@ -60,6 +60,7 @@ export default function TestMap(props) {
         borderRadius: "30px"
       }}
     >
+      {console.log(props.mapMode)}
       <MapWrapped
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
           process.env.REACT_APP_GOOGLE_KEY
@@ -69,6 +70,7 @@ export default function TestMap(props) {
         mapElement={<div style={{ height: `100%` }} />}
         lat={props.lat}
         lng={props.lng}
+        mapMode={props.mapMode}
       />
     </div>
   );
