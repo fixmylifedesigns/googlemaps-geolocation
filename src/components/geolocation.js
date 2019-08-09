@@ -1,7 +1,7 @@
 import React from "react";
 import { geolocated } from "react-geolocated";
 import Maps from "./map";
-
+// import Maps from './map copy'
 
 class Demo extends React.Component {
 
@@ -22,6 +22,7 @@ class Demo extends React.Component {
           lat={this.props.coords.latitude}
           lng={this.props.coords.longitude}
           mapMode={this.props.mapMode}
+          handleMapMode={this.props.handleMapMode}
         />
       </div>
     ) : (
