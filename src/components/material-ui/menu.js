@@ -55,7 +55,7 @@ export default function MenuButton(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={props.handleMapMode}>Switch Mode</MenuItem>
+        {/* <MenuItem onClick={props.handleMapMode}>Switch Mode</MenuItem> */}
         {/* <MenuItem onClick={lightmode}>Light Mode</MenuItem>
         <MenuItem onClick={darkmode}>Dark Mode</MenuItem> */}
         {buttonDisplay()}
